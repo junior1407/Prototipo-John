@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Casa.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dado.cs">
     <Files>
-      <File FileName="Assets\Scripts\Casa.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameBoardController.cs" Line="20" Column="46" />
+      <File FileName="Assets\Scripts\MostrarValorDado.cs" Line="24" Column="22" />
+      <File FileName="Assets\Scripts\AplicarForçaRandom.cs" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\Dado.cs" Line="31" Column="18" />
+      <File FileName="Assets\Scripts\BotaoEsquerdo.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameBoardController.cs" Line="48" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

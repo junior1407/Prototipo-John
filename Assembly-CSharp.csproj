@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\AplicarForçaRandom.cs" />
      <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />
+     <Compile Include="Assets\Scripts\Dado.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MostrarValorDado.cs" />

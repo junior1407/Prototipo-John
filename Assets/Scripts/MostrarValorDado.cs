@@ -5,13 +5,14 @@ public class MostrarValorDado : MonoBehaviour {
 
 	public LayerMask dieValueColliderLayer = -1;
 	public  int currentValue = 1;
-	private bool rollComplete = false;
+	public bool rollComplete = false;
 
-	void Update () 
-	{
+
+	IEnumerator rolarDados(){
+
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, Vector3.up,out hit,Mathf.Infinity, dieValueColliderLayer))
-		{
+		{	
 			currentValue = hit.collider.GetComponent<valorDado>().valor;
 		}
 		if (GetComponent<Rigidbody>().IsSleeping () && !rollComplete) {
@@ -20,5 +21,14 @@ public class MostrarValorDado : MonoBehaviour {
 		} else if (!GetComponent<Rigidbody>().IsSleeping()) {
 			rollComplete = false;
 		}
+		yield return false;
 	}
-}
+
+
+	void Update () 
+
+
+	{
+
+
+	}}

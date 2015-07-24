@@ -50,9 +50,9 @@
      <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />
      <Compile Include="Assets\Scripts\Dado.cs" />
+     <Compile Include="Assets\Scripts\Dado_1.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
-     <Compile Include="Assets\Scripts\MostrarValorDado.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\valorDado.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

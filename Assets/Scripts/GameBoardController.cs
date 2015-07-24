@@ -11,9 +11,9 @@ public class GameBoardController : MonoBehaviour
 	public int ValorDado;
 	public int CurrentPosition;
 	Transform CasaAlvo;
-	GameObject dado;
+	 GameObject dado;
 	GameObject alvo;
-	MostrarValorDado mostrarValorDado;
+	Dado scriptDado;
 	public int num_players;
 
 	public void AdquirePosicoesTabuleiro ()
@@ -39,13 +39,20 @@ public class GameBoardController : MonoBehaviour
 		AdquireJogadores ();
 
 		AdquirePosicoesTabuleiro ();
+
+		InicializaDado ();
+	}
+
+	public void InicializaDado(){
+		dado = GameObject.FindGameObjectWithTag ("dado");
+		scriptDado = dado.GetComponent<Dado> ();
+	
 	}
 
 	public int getDadoValor ()
 	{
-		dado = GameObject.FindGameObjectWithTag ("dado");
-		mostrarValorDado = dado.GetComponent<MostrarValorDado> ();
-		return mostrarValorDado.currentValue;
+
+		return scriptDado.currentValue;
 	}
 
 	public void mover (int player, int valor_dado)

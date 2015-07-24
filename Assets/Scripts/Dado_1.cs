@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MostrarValorDado : MonoBehaviour {
+public class Dado_1 : MonoBehaviour {
 
 	public LayerMask dieValueColliderLayer = -1;
 	public  int currentValue = 1;

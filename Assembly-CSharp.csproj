@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CFF8748B-ABD5-0CDD-680C-D6425B1544E3}</ProjectGuid>
+	<ProjectGuid>{D916E4D2-D0E7-6688-4F38-0F7B65773AA7}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -54,7 +54,6 @@
      <Compile Include="Assets\Scripts\Dado_1.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
      <Compile Include="Assets\Scripts\ImprimeMensagem.cs" />
-     <Compile Include="Assets\Scripts\MensagensCasasPretas.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\valorDado.cs" />
@@ -155,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{647CF291-CAA5-FA15-C3D5-3BDFE73C52FB}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{B863246C-CBB8-3725-F965-1E173A88C94D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

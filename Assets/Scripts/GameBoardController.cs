@@ -95,9 +95,9 @@ public class GameBoardController : MonoBehaviour
 		
 
 				
-			
+		  if (Input.GetKeyDown(KeyCode.J)){	
 
-
+		 
 
 
 				mover (1, getDadoValor ());
@@ -107,6 +107,6 @@ public class GameBoardController : MonoBehaviour
 		
 		
 		}
-	}
+	}}
 
 

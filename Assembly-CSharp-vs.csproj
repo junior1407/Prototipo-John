@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{6FDF856B-EF16-F817-D16B-888E102AD4D4}</ProjectGuid>
+	<ProjectGuid>{CFF8748B-ABD5-0CDD-680C-D6425B1544E3}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,9 +49,12 @@
      <Compile Include="Assets\Scripts\AplicarForçaRandom.cs" />
      <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />
+     <Compile Include="Assets\Scripts\Casa1.cs" />
      <Compile Include="Assets\Scripts\Dado.cs" />
      <Compile Include="Assets\Scripts\Dado_1.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
+     <Compile Include="Assets\Scripts\ImprimeMensagem.cs" />
+     <Compile Include="Assets\Scripts\MensagensCasasPretas.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\valorDado.cs" />
@@ -152,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{455FF135-AE1F-8753-F554-2B6760D07F9C}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{647CF291-CAA5-FA15-C3D5-3BDFE73C52FB}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

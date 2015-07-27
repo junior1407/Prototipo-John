@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
      <Compile Include="Assets\Scripts\ImprimeMensagem.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
+     <Compile Include="Assets\Scripts\MoverCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\valorDado.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

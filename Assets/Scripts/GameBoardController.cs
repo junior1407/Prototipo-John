@@ -36,6 +36,7 @@ public class GameBoardController : MonoBehaviour
 
 	void Awake ()
 	{
+		Debug.Log ("temos "+GameObject.Find("propriedades_jogo").GetComponent<Propriedes>().numero_de_jogadores + " jogadores");
 		AdquireJogadores ();
 
 		AdquirePosicoesTabuleiro ();

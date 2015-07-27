@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Propriedes.cs" />
      <Compile Include="Assets\Scripts\AplicarForçaRandom.cs" />
      <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />
      <Compile Include="Assets\Scripts\Casa1.cs" />
+     <Compile Include="Assets\Scripts\ComecaJogo.cs" />
      <Compile Include="Assets\Scripts\Dado.cs" />
      <Compile Include="Assets\Scripts\Dado_1.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />

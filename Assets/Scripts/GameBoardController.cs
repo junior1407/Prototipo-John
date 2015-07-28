@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameBoardController : MonoBehaviour
 {
@@ -25,23 +26,54 @@ public class GameBoardController : MonoBehaviour
 	}
 
 	public void ProximoPlayer(){
-		int posicao_atual;
+		Debug.Log ("inicio funcao");
 
+
+		PlayerScript script_atual = player_atual.GetComponent<PlayerScript> ();
+		int ordem_player_atual = script_atual.ordem;
+		Debug.Log (ordem_player_atual);
+		Debug.Log (players.Length-1);
+		if (ordem_player_atual < players.Length-1) {
+			Debug.Log ("chegou ao final");
+			player_atual = players [ordem_player_atual + 1];
+			
+		} else {
+			player_atual = players [0];
+
+			//Debug.Log (players.FindIndex (player_atual));
 //		players.Indexof ();
-		foreach (GameObject player in players) {
+			/*	foreach (GameObject player in players) {
 
+		}*/
 		}
 	}
 	public void AdquireJogadores ()
 	{
 
-		players = GameObject.FindGameObjectsWithTag ("jogador");
+		/*
+		players= GameObject.FindGameObjectsWithTag ("jogador");
+
 		foreach (GameObject atual in players) {
-			atual.GetComponent<PlayerScript> ().posicao_atual = 1;
+				
+			atual.GetComponent<PlayerScript> ().posicao_atual = 2;
 			scriptsplayers.Add (atual.GetComponent<PlayerScript> ());
 		}
 		num_players = scriptsplayers.Count;
 		player_atual = players [0];
+		*/
+
+		GameObject[] temp= GameObject.FindGameObjectsWithTag ("jogador");	
+		players = new GameObject[temp.Length];
+		foreach (GameObject atual in temp) {
+			players[atual.GetComponent<PlayerScript>().ordem] = atual;
+			
+			atual.GetComponent<PlayerScript> ().posicao_atual = 2;
+		//	scriptsplayers.Add (atual.GetComponent<PlayerScript> ());
+		}
+		//num_players = scriptsplayers.Count;
+		player_atual = players [0];
+		num_players = players.Length;	
+
 	}
 
 	void Awake ()
@@ -66,7 +98,7 @@ public class GameBoardController : MonoBehaviour
 		return scriptDado.currentValue;
 	}
 
-	public void mover (int player, int valor_dado)
+	public void mover (int valor_dado)
 	{
 			
 
@@ -83,9 +115,9 @@ public class GameBoardController : MonoBehaviour
 			// Suavemente, entao vc adaptara pra translate;
 			//No caso, ele ta trocando a posicao em todos os sentidos, so quero que ele va ate em cima.
 			player_atual.transform.localPosition = boardPositions [i].transform.position;
-
-	
 		}
+			ProximoPlayer();
+		
 	}
 
 	void Start ()
@@ -99,7 +131,10 @@ public class GameBoardController : MonoBehaviour
 	void Update ()
 	{
 
-
+		if (Input.GetKeyDown (KeyCode.J)) {
+		
+			ProximoPlayer();
+		}
 
 
 

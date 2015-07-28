@@ -14,6 +14,8 @@ public class Dado : MonoBehaviour
 	public float força = 10.0f;
 	public ForceMode forceMode;
 	public Rigidbody corpo;
+	public Vector3 velocity;
+	public Vector3 angular_velocity;
 
 
 	void Awake ()
@@ -27,47 +29,65 @@ public class Dado : MonoBehaviour
 	
 	void Update ()
 	{
+		angular_velocity = corpo.angularVelocity;
+		velocity = corpo.velocity;
 	
 		if (Input.GetButtonDown ("Fire1")) {
 
 
 
-			rolarDados ();
+			StartCoroutine("rolarDados");
 		
 		}
 
-		if (Input.GetKeyDown (KeyCode.J)) {
-			corpo.AddForce(Vector3.down * 600f);
-		}
 
 
 
 	
 	}
 
-	public void rolarDados ()
+	IEnumerator rolarDados ()
 	{
 		corpo.AddForce (Vector3.up * 50f);
 		corpo.AddTorque (Vector3.right * 200f);
 		corpo.AddForce (Random.onUnitSphere * força, forceMode);
 		corpo.AddTorque (Random.onUnitSphere * angularTorque, forceMode);
+		Debug.Log ("Inicio rotina");
 
-		StartCoroutine("Checkagem");
-		
+		yield return StartCoroutine("Checkagem");
+		Debug.Log ("Fim rotina");
+		gettarFaceDado ();
+		controller.mover (currentValue);
+
+
+
 	}
 
 	IEnumerator Checkagem(){
-
-		for (float timer = 3; timer >= 0; timer -= Time.deltaTime) {
-			yield return 0;
+		Debug.Log ("inicio espera");
+		yield return new WaitForSeconds (0.5f);
+		Debug.Log ("FIM espera");
+		for (float timer = 8; timer >= 0; timer -= Time.deltaTime) {
+			yield return null;
+			if (corpo.IsSleeping() ){
+				timer=0;
+				Debug.Log ("palou");
+				yield return 0;
+			}
 		}
-		dadosParados ();
-		controller.mover (1, currentValue);
+	
+
+		Debug.Log ("Saiu");
+	//	gettarFaceDado ();
+	//	controller.mover  (currentValue);
+
+
+
 	}
 
 
 
-	public bool dadosParados(){
+	public bool gettarFaceDado(){
 		RaycastHit hit;
 		if (Physics.Raycast (transform.position, Vector3.up, out hit, Mathf.Infinity, dieValueColliderLayer)) {	
 			currentValue = hit.collider.GetComponent<valorDado> ().valor;

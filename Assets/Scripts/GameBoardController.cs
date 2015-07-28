@@ -8,6 +8,7 @@ public class GameBoardController : MonoBehaviour
 	public GameObject[] players;
 	public List<PlayerScript> scriptsplayers = new List<PlayerScript> ();
 	public float speed = 10f;
+	public GameObject player_atual;
 	public int ValorDado;
 	public int CurrentPosition;
 	Transform CasaAlvo;
@@ -23,6 +24,14 @@ public class GameBoardController : MonoBehaviour
 		}
 	}
 
+	public void ProximoPlayer(){
+		int posicao_atual;
+
+//		players.Indexof ();
+		foreach (GameObject player in players) {
+
+		}
+	}
 	public void AdquireJogadores ()
 	{
 
@@ -32,6 +41,7 @@ public class GameBoardController : MonoBehaviour
 			scriptsplayers.Add (atual.GetComponent<PlayerScript> ());
 		}
 		num_players = scriptsplayers.Count;
+		player_atual = players [0];
 	}
 
 	void Awake ()
@@ -58,16 +68,16 @@ public class GameBoardController : MonoBehaviour
 
 	public void mover (int player, int valor_dado)
 	{
-		Debug.Log (valor_dado);
-		alvo = players [player];
+			
+
 		//alvo.GetComponent<PlayerScript> ().nome = "john sama";
-		PlayerScript player_atual = alvo.GetComponent<PlayerScript> ();
+		PlayerScript splayer_atual = player_atual.GetComponent<PlayerScript> ();
 
 
 		int inicio;
-		inicio = player_atual.posicao_atual;
+		inicio = splayer_atual.posicao_atual;
 		for (int i=inicio; i< inicio+valor_dado; i++) {
-			player_atual.posicao_atual ++;
+			splayer_atual.posicao_atual ++;
 
 			// Eu usei  =  pra receber a posiçao de uma vez.  Mas vc vai querer que va
 			// Suavemente, entao vc adaptara pra translate;
@@ -95,19 +105,6 @@ public class GameBoardController : MonoBehaviour
 
 		
 
-				
-		  if (Input.GetKeyDown(KeyCode.J)){	
-
-		 
-
-
-				mover (1, getDadoValor ());
-		   
-
-
-		
-		
-		}
 	}}
 
 

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Dado : MonoBehaviour
 {
-
+	GameBoardController controller;
+	GameObject atual;
 	public LayerMask dieValueColliderLayer = -1;
 	public  int currentValue = 1;
 	public bool rollComplete;
@@ -18,6 +19,7 @@ public class Dado : MonoBehaviour
 	void Awake ()
 	{
 		corpo = gameObject.GetComponent<Rigidbody> ();
+		controller = GameObject.Find ("GameBoardController").GetComponent<GameBoardController>();
 
 
 	}
@@ -28,10 +30,15 @@ public class Dado : MonoBehaviour
 	
 		if (Input.GetButtonDown ("Fire1")) {
 
+
+
 			rolarDados ();
 		
 		}
 
+		if (Input.GetKeyDown (KeyCode.J)) {
+			corpo.AddForce(Vector3.down * 600f);
+		}
 
 
 
@@ -40,8 +47,11 @@ public class Dado : MonoBehaviour
 
 	public void rolarDados ()
 	{
+		corpo.AddForce (Vector3.up * 50f);
+		corpo.AddTorque (Vector3.right * 200f);
 		corpo.AddForce (Random.onUnitSphere * força, forceMode);
 		corpo.AddTorque (Random.onUnitSphere * angularTorque, forceMode);
+
 		StartCoroutine("Checkagem");
 		
 	}
@@ -51,11 +61,8 @@ public class Dado : MonoBehaviour
 		for (float timer = 3; timer >= 0; timer -= Time.deltaTime) {
 			yield return 0;
 		}
-
-		Debug.Log ("OI");
 		dadosParados ();
-
-
+		controller.mover (1, currentValue);
 	}
 
 

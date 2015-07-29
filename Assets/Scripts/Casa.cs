@@ -7,5 +7,7 @@ public class Casa
 	public string cor;
 	public Transform transform;
 
+
+
 }
 

@@ -48,15 +48,19 @@
   <ItemGroup>
      <Compile Include="Assets\Propriedes.cs" />
      <Compile Include="Assets\Scripts\AplicarForçaRandom.cs" />
-     <Compile Include="Assets\Scripts\BotaoEsquerdo.cs" />
      <Compile Include="Assets\Scripts\Casa.cs" />
      <Compile Include="Assets\Scripts\Casa1.cs" />
+     <Compile Include="Assets\Scripts\Casas\BaseCasa.cs" />
+     <Compile Include="Assets\Scripts\Casas\CasaComum.cs" />
+     <Compile Include="Assets\Scripts\Casas\CasasAvancar.cs" />
      <Compile Include="Assets\Scripts\ComecaJogo.cs" />
      <Compile Include="Assets\Scripts\Dado.cs" />
      <Compile Include="Assets\Scripts\Dado_1.cs" />
      <Compile Include="Assets\Scripts\GameBoardController.cs" />
      <Compile Include="Assets\Scripts\ImprimeMensagem.cs" />
-     <Compile Include="Assets\Scripts\Menu.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\MenuSelect.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\MostraComoJogar.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\sair.cs" />
      <Compile Include="Assets\Scripts\MoverCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\valorDado.cs" />

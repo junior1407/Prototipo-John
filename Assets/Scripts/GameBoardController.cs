@@ -138,35 +138,31 @@ public class GameBoardController : MonoBehaviour
 		return scriptDado.currentValue;
 	}
 
-	public void mover (int valor_dado)
+
+	IEnumerator moveIndividual(int pos_casa, int ordem_player){
+		Debug.Log ("mover individual startoui");
+		float tempo_passado = 0;
+		float tempo_total = 2;
+	//	player_atual.transform.localPosition = casas[pos_casa].getPositionparaPlayer(ordem_player);
+		while(tempo_passado<tempo_total){
+
+		player_atual.transform.localPosition = Vector3.Lerp(player_atual.transform.localPosition,casas[pos_casa].getPositionparaPlayer(ordem_player),tempo_passado/tempo_total);
+			tempo_passado+=Time.deltaTime;
+			yield return 0;
+	  }
+	}
+	public IEnumerator mover (int valor_dado)
 	{
-			
-		/*
-		//alvo.GetComponent<PlayerScript> ().nome = "john sama";
-		PlayerScript splayer_atual = player_atual.GetComponent<PlayerScript> ();
 
-
-		int inicio;
-		inicio = splayer_atual.posicao_atual;
-		for (int i=inicio; i< inicio+valor_dado; i++) {
-			splayer_atual.posicao_atual ++;
-
-			// Eu usei  =  pra receber a posiçao de uma vez.  Mas vc vai querer que va
-			// Suavemente, entao vc adaptara pra translate;
-			//No caso, ele ta trocando a posicao em todos os sentidos, so quero que ele va ate em cima.
-			player_atual.transform.localPosition = boardPositions [i].transform.position;
-
-		}
-		ProximoPlayer ();
-		*/
-
+		Debug.Log ("mover pega");
 		PlayerScript splayer_atual = player_atual.GetComponent<PlayerScript> ();
 		int inicio;
 		inicio = splayer_atual.posicao_atual;
 		for (int i=inicio; i< inicio+valor_dado; i++) {
 			splayer_atual.posicao_atual ++;
-		//	player_atual.transform.localPosition = boardPositions [i].transform.position;
-			player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
+		//	moveIndividual(i,splayer_atual.ordem);
+			yield return StartCoroutine(moveIndividual(i,splayer_atual.ordem));
+		//	player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
 			
 		}
 		ProximoPlayer ();

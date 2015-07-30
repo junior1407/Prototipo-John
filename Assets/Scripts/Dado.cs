@@ -57,7 +57,8 @@ public class Dado : MonoBehaviour
 		yield return StartCoroutine("Checkagem");
 		Debug.Log ("Fim rotina");
 		gettarFaceDado ();
-		controller.mover (currentValue);
+		//controller.mover (currentValue);
+		controller.StartCoroutine (controller.mover (currentValue));
 
 
 

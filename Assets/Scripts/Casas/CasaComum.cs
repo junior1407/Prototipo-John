@@ -16,7 +16,7 @@ public class CasaComum: BaseCasa
 
 	public override void Executar ()
 	{
-		throw new System.NotImplementedException ();
+		quadro.text = mensagem;
 	}
 
 	#endregion

@@ -9,7 +9,9 @@ public class GameBoardController : MonoBehaviour
 	public List<Transform> boardPositions = new List<Transform> ();
 	public BaseCasa[] casas = new BaseCasa[65];
 	public GameObject[] players;
-	public GameObject text;
+	public GameObject objectTextoVez;
+	public GameObject quadro;
+	Text quadroPrincipal;
 	public List<PlayerScript> scriptsplayers = new List<PlayerScript> ();
 	public float speed = 10f;
 	public GameObject player_atual;
@@ -20,35 +22,65 @@ public class GameBoardController : MonoBehaviour
 	GameObject alvo;
 	Dado scriptDado;
 	public int num_players;
-	public Text textinho;
+	public Text texto_indicador_vez;
+
 /*	public GameObject pai;
 	public GameObject filho;
 	BaseCasa teste;*/
 
 	public void AdquirePosicoesTabuleiro ()
-	{/*
-		for (int i=1; i<66; i++) {
-
-			boardPositions.Add (GameObject.Find ("Casa" + i).transform);
-		}*/
+	{
 		for (int i=1; i<66; i++) {
 			Transform datransform = GameObject.Find ("Casa" + i).transform;
-			casas [i - 1] = (new CasaComum (datransform, textinho, i));
+
+			switch (i) {
+
+			case 2:
+				casas [i - 1] = (new CasaAvancar (datransform, quadroPrincipal, i, "Pecado! Chame o espírito santo! Avance 3 casas", 3	));
+				break;
+			
+			case 8:
+				casas [i - 1] = (new CasaJogarNovamente (datransform, quadroPrincipal, i, "Peça perdao ao irmao e jogue outra vez."));
+				break;
+			case 14: casas [i - 1] = (new CasaVoltar (datransform, quadroPrincipal, i, "Grite: Meu Deus! Volte uma casa.",1));break;
+			case 20: casas [i - 1] = (new CasaVoltar (datransform, quadroPrincipal, i, "Estou com medo. Volte 3 casas.",3));break;
+			case 26: casas [i - 1] = (new CasaAvancar (datransform, quadroPrincipal, i, "Sem oração caímos no pecado. Pule 2 casas",2));break;
+			case 32:  casas [i - 1] = (new CasaVoltar (datransform, quadroPrincipal, i, "O pecado me deixa sem luz. Volte uma casa",1));break;
+			case 38: casas [i - 1] = (new CasaAvancar (datransform, quadroPrincipal, i, "Fujo das tentações. Avance três casas",3));break;
+			case 44: casas [i - 1] = (new CasaVoltar (datransform, quadroPrincipal, i, "Não estava vigilante. Volte 3 casas",3));break;
+			case 50: casas [i - 1] = (new CasaAvancar (datransform, quadroPrincipal, i, "Socorro jesus! Avance uma casa",1));break; 
+			case 56:
+				casas [i - 1] = (new CasaVoltar (datransform, quadroPrincipal, i, "O orgulho me faz voltar três casas.",3));
+				break;
+			 	
+			default:
+				casas [i - 1] = (new CasaComum (datransform, quadroPrincipal, i));
+				break;
+			}
 		}
+
+			
+
+
+
+
+			
+
+
+
 
 	}
 
 	public void ProximoPlayer ()
 	{
-		Debug.Log ("inicio funcao");
+		Debug.Log ("Passando de Player");
 
 
 		PlayerScript script_atual = player_atual.GetComponent<PlayerScript> ();
 		int ordem_player_atual = script_atual.ordem;
-		Debug.Log (ordem_player_atual);
-		Debug.Log (players.Length - 1);
+
 		if (ordem_player_atual < players.Length - 1) {
-			Debug.Log ("chegou ao final");
+
 			player_atual = players [ordem_player_atual + 1];
 
 			
@@ -70,7 +102,7 @@ public class GameBoardController : MonoBehaviour
 		//player_atual = player;
 
 		int vez = player_atual.GetComponent<PlayerScript> ().ordem + 1; 
-		textinho.text = "Vez do jogador " + vez;
+		texto_indicador_vez.text = "Vez do jogador " + vez;
 	
 	}
 
@@ -107,7 +139,9 @@ public class GameBoardController : MonoBehaviour
 
 	void Awake ()
 	{
-		textinho = text.GetComponent<Text> ();
+		//	quadroPrincipal = GameObject.Find ("textos").GetComponent<Text> ();
+		texto_indicador_vez = objectTextoVez.GetComponent<Text> ();
+		quadroPrincipal = quadro.GetComponent<Text> ();
 		//Debug.Log ("temos "+GameObject.Find("propriedades_jogo").GetComponent<Propriedes>().numero_de_jogadores + " jogadores");
 		AdquireJogadores ();
 
@@ -138,19 +172,21 @@ public class GameBoardController : MonoBehaviour
 		return scriptDado.currentValue;
 	}
 
-
-	IEnumerator moveIndividual(int pos_casa, int ordem_player){
-		Debug.Log ("mover individual startoui");
+	IEnumerator moveIndividual (int pos_casa, int ordem_player)
+	{
+	
 		float tempo_passado = 0;
-		float tempo_total = 2;
-	//	player_atual.transform.localPosition = casas[pos_casa].getPositionparaPlayer(ordem_player);
-		while(tempo_passado<tempo_total){
+		float tempo_total = 0.1f;
+		//	player_atual.transform.localPosition = casas[pos_casa].getPositionparaPlayer(ordem_player);
 
-		player_atual.transform.localPosition = Vector3.Lerp(player_atual.transform.localPosition,casas[pos_casa].getPositionparaPlayer(ordem_player),tempo_passado/tempo_total);
-			tempo_passado+=Time.deltaTime;
+		while (tempo_passado<tempo_total) {
+
+			player_atual.transform.localPosition = Vector3.Lerp (player_atual.transform.localPosition, casas [pos_casa].getPositionparaPlayer (ordem_player), tempo_passado / tempo_total);
+			tempo_passado += Time.deltaTime;
 			yield return 0;
-	  }
+		}
 	}
+
 	public IEnumerator mover (int valor_dado)
 	{
 
@@ -159,14 +195,101 @@ public class GameBoardController : MonoBehaviour
 		int inicio;
 		inicio = splayer_atual.posicao_atual;
 		for (int i=inicio; i< inicio+valor_dado; i++) {
+
+			//	moveIndividual(i,splayer_atual.ordem);
+			yield return StartCoroutine (moveIndividual (i, splayer_atual.ordem));
+			//	player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
 			splayer_atual.posicao_atual ++;
-		//	moveIndividual(i,splayer_atual.ordem);
-			yield return StartCoroutine(moveIndividual(i,splayer_atual.ordem));
-		//	player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
-			
+			if (i + 1 == inicio + valor_dado) {
+				//Debug.Log ("last move");
+				//Debug.Log (casas[i].mensagem);
+				casas [i].Executar ();
+				if (casas [i].GetType () == typeof(CasaJogarNovamente)) {
+					yield break;
+				}
+				if (casas [i].GetType () == typeof(CasaAvancar)) {
+					CasaAvancar ex = (CasaAvancar)casas [i];
+					yield return StartCoroutine (mover_semPassar (ex.intensidade));
+				}
+				if (casas [i].GetType () == typeof(CasaVoltar)) {
+					CasaVoltar ex = (CasaVoltar)casas [i];
+					yield return StartCoroutine (mover_pratras(ex.intensidade));
+				}
+			}
 		}
+			
+	
 		ProximoPlayer ();
 
+	}
+
+
+
+
+	public IEnumerator mover_pratras(int valor_dado){
+
+		Debug.Log ("BACK");
+
+		PlayerScript splayer_atual = player_atual.GetComponent<PlayerScript> ();
+		Debug.Log ("Pos:" + splayer_atual.posicao_atual);
+		int inicio;
+		inicio = splayer_atual.posicao_atual;
+		for (int i=inicio; i> inicio-valor_dado; i--) {
+			Debug.Log ("Ele agora esta na pos"+splayer_atual.posicao_atual);
+			splayer_atual.posicao_atual --;
+			//	moveIndividual(i,splayer_atual.ordem);
+			Debug.Log ("Ele agora ira para pos"+splayer_atual.posicao_atual);
+			Debug.Log ("i vale "+i);
+
+		
+			yield return StartCoroutine (moveIndividual (i-2, splayer_atual.ordem));
+			//	player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
+
+			Debug.Log ("Pos:" + splayer_atual.posicao_atual);
+
+
+		
+		}
+		
+
+		
+	}
+
+
+
+	public IEnumerator mover_semPassar (int valor_dado)
+	{
+		
+		Debug.Log ("mover pega");
+		PlayerScript splayer_atual = player_atual.GetComponent<PlayerScript> ();
+		int inicio;
+		inicio = splayer_atual.posicao_atual;
+		for (int i=inicio; i< inicio+valor_dado; i++) {
+			
+			//	moveIndividual(i,splayer_atual.ordem);
+			yield return StartCoroutine (moveIndividual (i, splayer_atual.ordem));
+			//	player_atual.transform.localPosition = casas[i].getPositionparaPlayer(splayer_atual.ordem);
+			splayer_atual.posicao_atual ++;
+			if (i + 1 == inicio + valor_dado) {
+				//Debug.Log ("last move");
+				//Debug.Log (casas[i].mensagem);
+				casas [i].Executar ();
+				if (casas [i].GetType () == typeof(CasaJogarNovamente)) {
+					yield break;
+				}
+				if (casas [i].GetType () == typeof(CasaAvancar)) {
+					CasaAvancar ex = (CasaAvancar)casas [i];
+					yield return StartCoroutine (mover (ex.intensidade));
+					
+					
+					
+				}
+			}
+		}
+		
+		
+
+		
 	}
 
 	void Start ()
@@ -180,16 +303,19 @@ public class GameBoardController : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.A)) {
-			mover(4);
+			StartCoroutine(mover (55));
 		}
+
+
 	
 
-		/*
+
 		if (Input.GetKeyDown (KeyCode.F)) {
 			
-			player_atual.transform.position = teste.getPositionparaPlayer(1);
-			ProximoPlayer();
-		}
+			player_atual.transform.localPosition =  casas [6].getPositionparaPlayer (0);
+			player_atual.GetComponent<PlayerScript>().posicao_atual=6;
+		//	ProximoPlayer();
+		}/*
 		if (Input.GetKeyDown (KeyCode.G)) {
 			
 			player_atual.transform.position = teste.getPositionparaPlayer(2);ProximoPlayer();

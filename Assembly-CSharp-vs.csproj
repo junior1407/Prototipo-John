@@ -51,7 +51,10 @@
      <Compile Include="Assets\Scripts\Casa.cs" />
      <Compile Include="Assets\Scripts\Casa1.cs" />
      <Compile Include="Assets\Scripts\Casas\BaseCasa.cs" />
+     <Compile Include="Assets\Scripts\Casas\CasaAvancar.cs" />
      <Compile Include="Assets\Scripts\Casas\CasaComum.cs" />
+     <Compile Include="Assets\Scripts\Casas\CasaJogarNovamente.cs" />
+     <Compile Include="Assets\Scripts\Casas\CasaVoltar.cs" />
      <Compile Include="Assets\Scripts\Casas\CasasAvancar.cs" />
      <Compile Include="Assets\Scripts\ComecaJogo.cs" />
      <Compile Include="Assets\Scripts\Dado.cs" />

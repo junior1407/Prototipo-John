@@ -7,7 +7,7 @@ public abstract class BaseCasa
 {
 	int posicao{ get; set;}
 	Transform[] transform = new Transform[6];
-	Text quadro;
+	public Text quadro;
 	public string mensagem{ get; set;}
 	public BaseCasa(Transform pai, Text textinho, int pos){
 		quadro = textinho;
